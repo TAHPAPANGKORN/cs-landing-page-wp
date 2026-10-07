@@ -20,7 +20,10 @@ get_template_part( 'template-parts/video' );
 // Section 1.8: CWIE Partners Carousel Slider
 get_template_part( 'template-parts/partners' );
 
-// Section 2: Dynamic News & Events (ข่าวสาร WP Posts)
+// Section 2: TCAS Admission Section (การรับสมัคร)
+get_template_part( 'template-parts/admission' );
+
+// Section 2.5: Dynamic News & Events (ข่าวสาร WP Posts)
 get_template_part( 'template-parts/news' );
 
 // Section 3: Specialization Tracks / Curriculum (หลักสูตร)

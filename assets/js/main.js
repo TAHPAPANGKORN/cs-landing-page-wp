@@ -147,4 +147,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 7. Interactive TCAS Round Tab Switcher (Reference Matched)
+    const tcasCards = document.querySelectorAll('.tcas-select-card');
+    const tcasDetailPanels = document.querySelectorAll('.tcas-detail-card');
+
+    if (tcasCards.length > 0 && tcasDetailPanels.length > 0) {
+        tcasCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const targetId = card.getAttribute('data-target');
+
+                // Switch Active Card Button
+                tcasCards.forEach(c => {
+                    c.classList.remove('active');
+                    c.setAttribute('aria-selected', 'false');
+                });
+                card.classList.add('active');
+                card.setAttribute('aria-selected', 'true');
+
+                // Switch Active Detail Panel
+                tcasDetailPanels.forEach(panel => {
+                    if (panel.getAttribute('id') === `panel-${targetId}`) {
+                        panel.classList.add('active');
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                });
+            });
+        });
+    }
 });
+

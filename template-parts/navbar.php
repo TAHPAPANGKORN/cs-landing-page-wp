@@ -27,6 +27,7 @@
         <nav class="desktop-nav" aria-label="Primary Navigation">
             <ul class="nav-menu">
                 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link">หน้าแรก</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>" class="nav-link">การรับสมัคร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="nav-link">ข่าวสาร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="nav-link">หลักสูตร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>" class="nav-link">FAQ</a></li>
@@ -56,6 +57,7 @@
             <nav class="drawer-nav">
                 <ul>
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="drawer-link">หน้าแรก</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>" class="drawer-link">การรับสมัคร</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="drawer-link">ข่าวสาร</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="drawer-link">หลักสูตร</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>" class="drawer-link">FAQ</a></li>

@@ -236,4 +236,37 @@ function buu_register_partners_cpt() {
 }
 add_action( 'init', 'buu_register_partners_cpt' );
 
+/**
+ * Register Custom Post Type: TCAS Admission (การรับสมัคร TCAS)
+ */
+function buu_register_admission_cpt() {
+	$labels = array(
+		'name'               => 'การรับสมัคร TCAS',
+		'singular_name'      => 'รอบการรับสมัคร',
+		'add_new'            => 'เพิ่มรอบรับสมัครใหม่',
+		'add_new_item'       => 'เพิ่มรอบการรับสมัครใหม่',
+		'edit_item'          => 'แก้ไขรอบการรับสมัคร',
+		'new_item'           => 'รอบการรับสมัครใหม่',
+		'all_items'          => 'รอบการรับสมัครทั้งหมด',
+		'view_item'          => 'ดูรอบการรับสมัคร',
+		'search_items'       => 'ค้นหารอบการรับสมัคร',
+		'not_found'          => 'ไม่พบรอบการรับสมัคร',
+		'not_found_in_trash' => 'ไม่พบในถังขยะ',
+		'menu_name'          => 'การรับสมัคร TCAS',
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'has_archive'        => false,
+		'menu_icon'          => 'dashicons-welcome-learn-more',
+		'supports'           => array( 'title', 'editor', 'excerpt', 'custom-fields' ),
+		'show_in_rest'       => true,
+	);
+
+	register_post_type( 'admission', $args );
+}
+add_action( 'init', 'buu_register_admission_cpt' );
+
+
 
