@@ -176,5 +176,30 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 8. PLO Accordion Toggle (Reference UI Matched)
+    const ploAccBtns = document.querySelectorAll('.plo-acc-btn');
+    ploAccBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.plo-acc-item');
+            const content = item.querySelector('.plo-acc-content');
+            const arrow = btn.querySelector('.acc-arrow');
+            const isActive = item.classList.contains('active');
+
+            if (isActive) {
+                item.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                if (arrow) arrow.textContent = '►';
+                if (content) content.style.display = 'none';
+            } else {
+                item.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                if (arrow) arrow.textContent = '▼';
+                if (content) content.style.display = 'block';
+            }
+        });
+    });
 });
+
+
 

@@ -28,8 +28,8 @@
             <ul class="nav-menu">
                 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link">หน้าแรก</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>" class="nav-link">การรับสมัคร</a></li>
-                <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="nav-link">ข่าวสาร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="nav-link">หลักสูตร</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="nav-link">ข่าวสาร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>" class="nav-link">FAQ</a></li>
             </ul>
         </nav>
@@ -43,26 +43,56 @@
             </button>
         </div>
     </div>
+</header>
 
-    <!-- Mobile Navigation Drawer -->
-    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-        <div class="drawer-overlay" id="drawer-overlay"></div>
-        <div class="drawer-content">
-            <div class="drawer-header">
+<!-- Mobile Navigation Drawer Overlay (Fixed Fullscreen Container) -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer-content">
+        <div class="drawer-header">
+            <div class="brand-logo">
                 <div class="logo-badge">
                     <span class="logo-code">CS</span>
                 </div>
-                <button class="drawer-close" id="drawer-close-btn" aria-label="Close menu">&times;</button>
+                <div class="logo-text">
+                    <span class="logo-title">Computer Science</span>
+                    <span class="logo-sub">BUU INFORMATICS</span>
+                </div>
             </div>
-            <nav class="drawer-nav">
-                <ul>
-                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="drawer-link">หน้าแรก</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>" class="drawer-link">การรับสมัคร</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="drawer-link">ข่าวสาร</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="drawer-link">หลักสูตร</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>" class="drawer-link">FAQ</a></li>
-                </ul>
-            </nav>
+            <button class="drawer-close" id="drawer-close-btn" aria-label="Close menu">&times;</button>
         </div>
+        <nav class="drawer-nav">
+            <ul>
+                <li>
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="drawer-link">
+                        <span>หน้าแรก</span>
+                        <i class="fas fa-chevron-right drawer-arrow"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>" class="drawer-link">
+                        <span>การรับสมัคร (TCAS)</span>
+                        <i class="fas fa-chevron-right drawer-arrow"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="drawer-link">
+                        <span>หลักสูตร</span>
+                        <i class="fas fa-chevron-right drawer-arrow"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="drawer-link">
+                        <span>ข่าวสารและกิจกรรม</span>
+                        <i class="fas fa-chevron-right drawer-arrow"></i>
+                    </a>
+                <li>
+                    <a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>" class="drawer-link">
+                        <span>คำถามที่พบบ่อย (FAQ)</span>
+                        <i class="fas fa-chevron-right drawer-arrow"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
-</header>
+</div>

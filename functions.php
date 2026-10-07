@@ -71,6 +71,14 @@ function buu_se_enqueue_assets() {
 		null
 	);
 
+	// FontAwesome 6 Icons CDN
+	wp_enqueue_style(
+		'font-awesome-6',
+		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+		array(),
+		'6.5.1'
+	);
+
 	// Main Theme Style (style.css)
 	wp_enqueue_style(
 		'buu-se-main-style',
