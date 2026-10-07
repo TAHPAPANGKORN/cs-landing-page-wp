@@ -7,19 +7,30 @@
 
 get_header();
 
-// Fetch categories with post counts
-$categories = get_categories(
-	array(
-		'orderby'    => 'name',
-		'order'      => 'ASC',
-		'hide_empty' => true,
-	)
-);
+$current_post_type = get_query_var( 'post_type' );
+if ( empty( $current_post_type ) && isset( $_GET['post_type'] ) ) {
+	$current_post_type = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
+}
+$is_gallery = ( 'cs_gallery' === $current_post_type || is_post_type_archive( 'cs_gallery' ) || is_tax( 'gallery_category' ) );
+
+if ( $is_gallery ) {
+	$page_title    = 'ภาพบรรยากาศกิจกรรม <span class="dek-cs-text">DEK CS</span>';
+	$crumb_title   = 'ภาพกิจกรรม';
+	$accent_color  = '#D97706';
+	$target_cpt    = 'cs_gallery';
+	$gallery_terms = get_terms( array( 'taxonomy' => 'gallery_category', 'hide_empty' => false ) );
+} else {
+	$page_title   = 'ข่าวสาร & ประชาสัมพันธ์';
+	$crumb_title  = 'ข่าวสาร';
+	$accent_color = '#003366';
+	$target_cpt   = 'post';
+	$categories   = get_categories( array( 'orderby' => 'name', 'order' => 'ASC', 'hide_empty' => true ) );
+}
 
 // Fetch all published posts
 $archive_query = new WP_Query(
 	array(
-		'post_type'      => 'post',
+		'post_type'      => $target_cpt,
 		'posts_per_page' => -1,
 		'post_status'    => 'publish',
 	)
@@ -33,13 +44,13 @@ $archive_query = new WP_Query(
             <nav class="archive-breadcrumbs" aria-label="Breadcrumb">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">หน้าแรก</a>
                 <span class="sep">&gt;</span>
-                <span class="current">ข่าวสาร</span>
+                <span class="current"><?php echo esc_html( $crumb_title ); ?></span>
             </nav>
 
             <!-- Category Section Title Header -->
             <div class="archive-category-header">
-                <span class="category-accent-bar"></span>
-                <h1 class="archive-header-title">ข่าวสาร & กิจกรรม</h1>
+                <span class="category-accent-bar" style="background-color: <?php echo esc_attr( $accent_color ); ?>;"></span>
+                <h1 class="archive-header-title"><?php echo wp_kses_post( $page_title ); ?></h1>
             </div>
 
             <!-- Category Filter Pills -->
@@ -48,24 +59,34 @@ $archive_query = new WP_Query(
                     <span class="pill-icon">⊞</span>
                     <span>ทั้งหมด</span>
                 </button>
-				<?php foreach ( $categories as $cat ) : ?>
-                    <button class="pill-tab" data-filter="cat-<?php echo esc_attr( $cat->slug ); ?>">
-                        <span><?php echo esc_html( $cat->name ); ?></span>
-                        <span class="pill-count">(<?php echo esc_html( $cat->count ); ?>)</span>
-                    </button>
-				<?php endforeach; ?>
+				<?php if ( $is_gallery ) : ?>
+					<?php if ( ! empty( $gallery_terms ) && ! is_wp_error( $gallery_terms ) ) : ?>
+						<?php foreach ( $gallery_terms as $term ) : ?>
+							<button class="pill-tab" data-filter="cat-<?php echo esc_attr( $term->slug ); ?>">
+								<span><?php echo esc_html( $term->name ); ?></span>
+							</button>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				<?php else : ?>
+					<?php foreach ( $categories as $cat ) : ?>
+						<button class="pill-tab" data-filter="cat-<?php echo esc_attr( $cat->slug ); ?>">
+							<span><?php echo esc_html( $cat->name ); ?></span>
+							<span class="pill-count">(<?php echo esc_html( $cat->count ); ?>)</span>
+						</button>
+					<?php endforeach; ?>
+				<?php endif; ?>
             </div>
 
             <!-- News & Activity Card Grid (Matched Homepage news-card UI) -->
-            <div class="archive-news-grid">
+            <div class="<?php echo $is_gallery ? 'gallery-archive-grid' : 'archive-news-grid'; ?>">
 				<?php if ( $archive_query->have_posts() ) : ?>
 					<?php
 					while ( $archive_query->have_posts() ) :
 						$archive_query->the_post();
-						$post_cats   = get_the_category();
+						$post_cats   = $is_gallery ? get_the_terms( get_the_ID(), 'gallery_category' ) : get_the_category();
 						$cat_classes = array();
-						$cat_name    = 'ข่าวสาร';
-						if ( ! empty( $post_cats ) ) {
+						$cat_name    = $is_gallery ? 'กิจกรรม' : 'ข่าวสาร';
+						if ( ! empty( $post_cats ) && ! is_wp_error( $post_cats ) ) {
 							$cat_name = $post_cats[0]->name;
 							foreach ( $post_cats as $c ) {
 								$cat_classes[] = 'cat-' . $c->slug;

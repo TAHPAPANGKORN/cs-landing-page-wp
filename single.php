@@ -16,16 +16,21 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-			$categories    = get_the_category();
-			$category_name = ! empty( $categories ) ? $categories[0]->name : 'ข่าวสาร';
+			$is_gallery    = ( 'cs_gallery' === get_post_type() );
+			$categories    = $is_gallery ? get_the_terms( get_the_ID(), 'gallery_category' ) : get_the_category();
+			$category_name = ! empty( $categories ) && ! is_wp_error( $categories ) ? $categories[0]->name : ( $is_gallery ? 'กิจกรรมนิสิต' : 'ข่าวสาร' );
+			$parent_url    = $is_gallery ? home_url( '/#gallery' ) : home_url( '/#news' );
+			$parent_title  = $is_gallery ? 'ภาพกิจกรรม' : 'ข่าวสาร';
+			$section_title = $is_gallery ? 'ภาพบรรยากาศกิจกรรม' : 'ข่าวสาร & กิจกรรม';
+			$accent_style  = $is_gallery ? 'style="background-color: #D97706;"' : '';
 			?>
             <div class="single-post-layout-container">
                 <!-- Breadcrumbs Navigation -->
                 <nav class="post-breadcrumbs" aria-label="Breadcrumb">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>">หน้าแรก</a>
                     <span class="sep">&gt;</span>
-                    <a href="<?php echo esc_url( home_url( '/#news' ) ); ?>">ข่าวสาร</a>
-                    <?php if ( ! empty( $categories ) ) : ?>
+                    <a href="<?php echo esc_url( $parent_url ); ?>"><?php echo esc_html( $parent_title ); ?></a>
+                    <?php if ( ! empty( $category_name ) ) : ?>
                         <span class="sep">&gt;</span>
                         <span class="current"><?php echo esc_html( $category_name ); ?></span>
                     <?php endif; ?>
@@ -33,8 +38,8 @@ get_header();
 
                 <!-- Category Section Title Header -->
                 <div class="post-category-header">
-                    <span class="category-accent-bar"></span>
-                    <h2 class="category-header-title">ข่าวสาร & กิจกรรม</h2>
+                    <span class="category-accent-bar" <?php echo $accent_style; ?>></span>
+                    <h2 class="category-header-title"><?php echo esc_html( $section_title ); ?></h2>
                 </div>
 
                 <!-- Main Post White Card Container -->

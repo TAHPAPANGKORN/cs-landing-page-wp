@@ -45,6 +45,7 @@
                     <li><a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>">การรับสมัคร TCAS</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>">หลักสูตรและแขนงวิชา</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>">ข่าวสารและกิจกรรม</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#gallery' ) ); ?>">ภาพกิจกรรม</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>">คำถามที่พบบ่อย (FAQ)</a></li>
                 </ul>
             </div>

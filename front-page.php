@@ -29,8 +29,12 @@ get_template_part( 'template-parts/tracks' );
 // Section 3: Dynamic News & Events (ข่าวสาร WP Posts)
 get_template_part( 'template-parts/news' );
 
+// Section 3.5: Activity Photo Gallery (ภาพบรรยากาศและกิจกรรมนิสิต)
+get_template_part( 'template-parts/gallery' );
+
 // Section 4: Frequently Asked Questions (FAQ)
 get_template_part( 'template-parts/faq' );
+
 
 ?>
 

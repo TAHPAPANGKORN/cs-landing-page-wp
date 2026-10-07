@@ -199,7 +199,85 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 9. Interactive Activity Photo Gallery Filter & Single-Row Slider Controls
+    const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-card-item');
+    const sliderTrack = document.getElementById('gallery-slider-track');
+    const prevBtn = document.getElementById('gallery-slider-prev');
+    const nextBtn = document.getElementById('gallery-slider-next');
+
+    function updateSliderArrows() {
+        if (!sliderTrack || !prevBtn || !nextBtn) return;
+
+        const visibleCards = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+        
+        // Hide arrows if visible items <= 3 on desktop
+        if (visibleCards.length <= 3 && window.innerWidth > 992) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            return;
+        } else {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+        }
+
+        const maxScrollLeft = sliderTrack.scrollWidth - sliderTrack.clientWidth;
+        if (sliderTrack.scrollLeft <= 5) {
+            prevBtn.classList.add('disabled');
+        } else {
+            prevBtn.classList.remove('disabled');
+        }
+
+        if (sliderTrack.scrollLeft >= maxScrollLeft - 5) {
+            nextBtn.classList.add('disabled');
+        } else {
+            nextBtn.classList.remove('disabled');
+        }
+    }
+
+    if (sliderTrack && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            const cardWidth = sliderTrack.querySelector('.gallery-card-item')?.offsetWidth || 350;
+            sliderTrack.scrollBy({ left: -(cardWidth + 24), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const cardWidth = sliderTrack.querySelector('.gallery-card-item')?.offsetWidth || 350;
+            sliderTrack.scrollBy({ left: cardWidth + 24, behavior: 'smooth' });
+        });
+
+        sliderTrack.addEventListener('scroll', updateSliderArrows);
+        window.addEventListener('resize', updateSliderArrows);
+        setTimeout(updateSliderArrows, 300);
+    }
+
+    if (galleryFilterBtns.length > 0 && galleryItems.length > 0) {
+        galleryFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                galleryFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                galleryItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (sliderTrack) {
+                    sliderTrack.scrollLeft = 0;
+                    setTimeout(updateSliderArrows, 150);
+                }
+            });
+        });
+    }
 });
+
 
 
 

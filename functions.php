@@ -276,5 +276,155 @@ function buu_register_admission_cpt() {
 }
 add_action( 'init', 'buu_register_admission_cpt' );
 
+/**
+ * Register Custom Post Type: Activity Gallery (ภาพกิจกรรม)
+ */
+function buu_register_gallery_cpt() {
+	$labels = array(
+		'name'               => 'ภาพกิจกรรม',
+		'singular_name'      => 'ภาพกิจกรรม',
+		'add_new'            => 'เพิ่มภาพกิจกรรมใหม่',
+		'add_new_item'       => 'เพิ่มภาพกิจกรรมใหม่',
+		'edit_item'          => 'แก้ไขภาพกิจกรรม',
+		'new_item'           => 'ภาพกิจกรรมใหม่',
+		'all_items'          => 'ภาพกิจกรรมทั้งหมด',
+		'view_item'          => 'ดูภาพกิจกรรม',
+		'search_items'       => 'ค้นหาภาพกิจกรรม',
+		'not_found'          => 'ไม่พบภาพกิจกรรม',
+		'not_found_in_trash' => 'ไม่พบในถังขยะ',
+		'menu_name'          => 'ภาพกิจกรรม',
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'gallery', 'with_front' => false ),
+		'capability_type'    => 'post',
+		'has_archive'        => 'gallery',
+		'hierarchical'       => false,
+		'menu_position'      => 5,
+		'menu_icon'          => 'dashicons-format-gallery',
+		'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+		'show_in_rest'       => true,
+	);
+
+	register_post_type( 'cs_gallery', $args );
+
+	// Register Custom Taxonomy for Gallery Categories
+	$tax_labels = array(
+		'name'              => 'หมวดหมู่กิจกรรม',
+		'singular_name'     => 'หมวดหมู่กิจกรรม',
+		'search_items'      => 'ค้นหาหมวดหมู่',
+		'all_items'         => 'หมวดหมู่ทั้งหมด',
+		'edit_item'         => 'แก้ไขหมวดหมู่',
+		'update_item'       => 'อัปเดตหมวดหมู่',
+		'add_new_item'      => 'เพิ่มหมวดหมู่ใหม่',
+		'new_item_name'     => 'ชื่อหมวดหมู่ใหม่',
+		'menu_name'         => 'หมวดหมู่กิจกรรม',
+	);
+
+	register_taxonomy(
+		'gallery_category',
+		array( 'cs_gallery' ),
+		array(
+			'hierarchical'      => true,
+			'labels'            => $tax_labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'gallery-category', 'with_front' => false ),
+			'show_in_rest'      => true,
+		)
+	);
+}
+add_action( 'init', 'buu_register_gallery_cpt' );
+
+/**
+ * Automatically flush rewrite rules once to register CPT permalinks in WordPress DB
+ */
+function buu_ensure_gallery_rewrite_rules() {
+	if ( ! get_option( 'buu_cs_gallery_rewrite_flushed_v3' ) ) {
+		buu_register_gallery_cpt();
+		flush_rewrite_rules( false );
+		update_option( 'buu_cs_gallery_rewrite_flushed_v3', true );
+	}
+}
+add_action( 'init', 'buu_ensure_gallery_rewrite_rules', 99 );
+add_action( 'after_switch_theme', 'buu_ensure_gallery_rewrite_rules' );
+
+
+/**
+ * Auto Seed Demo Activity Gallery Posts if Database is empty
+ */
+function buu_seed_demo_gallery_posts() {
+	if ( ! post_type_exists( 'cs_gallery' ) ) {
+		return;
+	}
+
+	$counts = wp_count_posts( 'cs_gallery' );
+	if ( isset( $counts->publish ) && (int) $counts->publish > 0 ) {
+		return;
+	}
+
+	// Define demo activity data
+	$demo_activities = array(
+		array(
+			'title'    => 'โครงการส่งเสริมทักษะการแข่งขัน Hackathon & AI Innovation 2025',
+			'content'  => 'ประมวลภาพกิจกรรมการแข่งขัน Hackathon ด้านการพัฒนาซอฟต์แวร์และปัญญาประดิษฐ์ (AI Innovation) สำหรับนิสิตภาควิชาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยบูรพา นิสิตได้แสดงศักยภาพในการแก้ไขปัญหาด้วยเทคโนโลยีสมัยใหม่และสร้างสรรค์นวัตกรรมดิจิทัล',
+			'category' => 'Hackathon & AI',
+		),
+		array(
+			'title'    => 'กิจกรรม Workshop การพัฒนา Web Application & Modern Frontend',
+			'content'  => 'ภาพบรรยากาศโครงการอบรมเชิงปฏิบัติการ Workshop Modern Web Development เรียนรู้เทคโนโลยี React, Next.js และ CSS Design System โดยวิทยากรผู้เชี่ยวชาญจากบริษัท Tech ชั้นนำ',
+			'category' => 'การเรียน & เวิร์กชอป',
+		),
+		array(
+			'title'    => 'กิจกรรมสานสัมพันธ์บายศรีสู่ขวัญและรับน้องใหม่ CS BUU 2025',
+			'content'  => 'ภาพบรรยากาศความประทับใจในกิจกรรมต้อนรับนิสิตใหม่ บายศรีสู่ขวัญ และกิจกรรมสานสัมพันธ์ระหว่างรุ่นพี่รุ่นน้อง CS BUU เพื่อสร้างความอบอุ่นและความผูกพันในรั้วมหาวิทยาลัย',
+			'category' => 'กิจกรรมนิสิต & ค่าย',
+		),
+		array(
+			'title'    => 'โครงการศึกษาดูงาน ณ บริษัทเทคโนโลยีชั้นนำแห่งประเทศไทย',
+			'content'  => 'ภาพการนำนิสิตเข้าศึกษาดูงานกระบวนการทำงานจริงในอุตสาหกรรมซอฟต์แวร์ การบริหารจัดการโครงการ Cloud Infrastructure และระบบความปลอดภัยไซเบอร์ ณ บริษัทเทคโนโลยีชั้นนำในเขตนวัตกรรม EEC',
+			'category' => 'ดูงาน & สหกิจศึกษา',
+		),
+		array(
+			'title'    => 'การนำเสนอโครงงานวิจัยวิทยาการคอมพิวเตอร์และซอฟต์แวร์อัจฉริยะ',
+			'content'  => 'การจัดแสดงผลงาน Senior Project และวิจัยนวัตกรรมซอฟต์แวร์อัจฉริยะของนิสิตชั้นปีที่ 4 เพื่อนำเสนอต่อคณะกรรมการและตัวแทนองค์กรภาคอุตสาหกรรมซอฟต์แวร์',
+			'category' => 'การเรียน & เวิร์กชอป',
+		),
+		array(
+			'title'    => 'ค่ายอบรมคอมพิวเตอร์และพัฒนาซอฟต์แวร์ให้แก่ชุมชนและโรงเรียน',
+			'content'  => 'นิสิตจิตอาสา CS BUU ร่วมจัดค่ายถ่ายทอดความรู้ทักษะการเขียนโปรแกรมและการใช้งานคอมพิวเตอร์เบื้องต้นให้แก่เยาวชนและโรงเรียนในพื้นที่จังหวัดชลบุรี',
+			'category' => 'กิจกรรมนิสิต & ค่าย',
+		),
+	);
+
+	foreach ( $demo_activities as $item ) {
+		$post_id = wp_insert_post(
+			array(
+				'post_title'   => $item['title'],
+				'post_content' => $item['content'],
+				'post_status'  => 'publish',
+				'post_type'    => 'cs_gallery',
+			)
+		);
+
+		if ( $post_id && ! is_wp_error( $post_id ) ) {
+			wp_set_object_terms( $post_id, $item['category'], 'gallery_category' );
+		}
+	}
+
+	flush_rewrite_rules();
+}
+add_action( 'init', 'buu_seed_demo_gallery_posts', 20 );
+
+
+
+
 
 
