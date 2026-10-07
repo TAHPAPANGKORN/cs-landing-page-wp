@@ -204,3 +204,36 @@ function buu_get_post_cover_url( $post_id = null ) {
 	');
 }
 
+/**
+ * Register Custom Post Type: CWIE Partners (องค์กรพันธมิตร)
+ */
+function buu_register_partners_cpt() {
+	$labels = array(
+		'name'               => 'องค์กรพันธมิตร',
+		'singular_name'      => 'องค์กรพันธมิตร',
+		'add_new'            => 'เพิ่มพันธมิตรใหม่',
+		'add_new_item'       => 'เพิ่มองค์กรพันธมิตรใหม่',
+		'edit_item'          => 'แก้ไของค์กรพันธมิตร',
+		'new_item'           => 'องค์กรพันธมิตรใหม่',
+		'all_items'          => 'องค์กรพันธมิตรทั้งหมด',
+		'view_item'          => 'ดูองค์กรพันธมิตร',
+		'search_items'       => 'ค้นหาองค์กรพันธมิตร',
+		'not_found'          => 'ไม่พบองค์กรพันธมิตร',
+		'not_found_in_trash' => 'ไม่พบในถังขยะ',
+		'menu_name'          => 'องค์กรพันธมิตร',
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'has_archive'        => false,
+		'menu_icon'          => 'dashicons-building',
+		'supports'           => array( 'title', 'thumbnail' ),
+		'show_in_rest'       => true,
+	);
+
+	register_post_type( 'partner', $args );
+}
+add_action( 'init', 'buu_register_partners_cpt' );
+
+

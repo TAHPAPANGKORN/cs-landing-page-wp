@@ -1640,3 +1640,134 @@ img.wp-smiley,
   height: 100%;
   border: 0;
 }
+
+/* ==========================================================================
+   CWIE Partners Carousel Slider
+   ========================================================================== */
+.partners-section {
+  background-color: #FFFFFF;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  overflow: hidden;
+}
+
+.partners-badge-header {
+  font-family: var(--font-family-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.partners-slider-wrapper {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.partners-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.75rem;
+  width: max-content;
+  animation: partnersMarquee 30s linear infinite;
+}
+
+.partners-slider-wrapper:hover .partners-track {
+  animation-play-state: paused;
+}
+
+@keyframes partnersMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.partner-card-item {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.partner-logo-box {
+  width: 100%;
+  height: 135px;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.partner-card-item:hover .partner-logo-box {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 25px -5px rgba(0, 51, 102, 0.12);
+  transform: translateY(-4px);
+}
+
+.partner-logo-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.partner-card-item:hover .partner-logo-img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.partner-placeholder-icon {
+  font-size: 2.5rem;
+}
+
+.partner-name {
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.partner-card-item.partner-text-only {
+  justify-content: center;
+  height: 135px;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.partner-card-item.partner-text-only:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 25px -5px rgba(0, 51, 102, 0.12);
+  transform: translateY(-4px);
+}
+
+.partner-card-item.partner-text-only .partner-name {
+  margin-top: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
