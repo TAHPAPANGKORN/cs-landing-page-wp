@@ -1,0 +1,52 @@
+/*
+Theme Name: BUU Software Engineering Landing
+Theme URI: https://se.informatics.buu.ac.th/
+Author: Senior WordPress Developer
+Author URI: https://se.informatics.buu.ac.th/
+Description: High-performance, responsive custom WordPress theme for Software Engineering Program, Faculty of Informatics, Burapha University (BUU SE).
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: buu-se-landing
+Tags: software-engineering, education, burapha-university, custom-theme, landing-page
+*/
+
+/* Baseline Reset & Theme Variables */
+:root {
+  /* Brand Palette */
+  --color-primary: #003366;       /* BUU Navy Blue */
+  --color-primary-dark: #002244;  /* Darker Navy */
+  --color-accent: #F4B41A;       /* Gold / Yellow Accent */
+  --color-accent-hover: #E09E05; /* Gold Hover */
+  --color-accent-red: #DC2626;   /* Crimson Accent for Alerts / Badges */
+  
+  /* Neutral Palette */
+  --color-bg-light: #F8FAFC;      /* Slate 50 */
+  --color-bg-white: #FFFFFF;
+  --color-bg-dark: #0F172A;       /* Slate 900 */
+  --color-surface-dark: #1E293B;  /* Slate 800 */
+  --color-text-main: #1E293B;     /* Primary Body Text */
+  --color-text-muted: #64748B;    /* Muted Subtitle Text */
+  --color-text-light: #F8FAFC;    /* Light Text */
+  --color-border: #E2E8F0;        /* Slate 200 */
+
+  /* Typography */
+  --font-family-base: 'Prompt', 'Kanit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: 'Prompt', 'Kanit', sans-serif;
+
+  /* Spacing & Layout */
+  --container-max: 1280px;
+  --header-height: 80px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows & Effects */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 51, 102, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 51, 102, 0.15);
+  --shadow-glow: 0 0 25px rgba(244, 180, 26, 0.35);
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
