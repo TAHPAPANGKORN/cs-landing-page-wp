@@ -1242,7 +1242,7 @@ img.wp-smiley,
 }
 
 .faq-item.active .faq-answer {
-  max-height: 300px;
+  max-height: 1000px;
   padding: 0 1.5rem 1.35rem 1.5rem;
 }
 

@@ -314,6 +314,96 @@ function buu_register_gallery_cpt() {
 add_action( 'init', 'buu_register_gallery_cpt' );
 
 /**
+ * Register Custom Post Type: FAQ (คำถามที่พบบ่อย)
+ */
+function buu_register_faq_cpt() {
+	$labels = array(
+		'name'               => 'คำถามที่พบบ่อย (FAQ)',
+		'singular_name'      => 'คำถาม FAQ',
+		'add_new'            => 'เพิ่มคำถามใหม่',
+		'add_new_item'       => 'เพิ่มคำถาม FAQ ใหม่',
+		'edit_item'          => 'แก้ไขคำถาม FAQ',
+		'new_item'           => 'คำถาม FAQ ใหม่',
+		'all_items'          => 'คำถาม FAQ ทั้งหมด',
+		'view_item'          => 'ดูคำถาม FAQ',
+		'search_items'       => 'ค้นหาคำถาม FAQ',
+		'not_found'          => 'ไม่พบคำถาม FAQ',
+		'not_found_in_trash' => 'ไม่พบในถังขยะ',
+		'menu_name'          => 'คำถามที่พบบ่อย (FAQ)',
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => false,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => false,
+		'rewrite'            => false,
+		'capability_type'    => 'post',
+		'has_archive'        => false,
+		'hierarchical'       => false,
+		'menu_position'      => 6,
+		'menu_icon'          => 'dashicons-editor-help',
+		'supports'           => array( 'title', 'editor', 'page-attributes' ),
+		'show_in_rest'       => true,
+	);
+
+	register_post_type( 'cs_faq', $args );
+}
+add_action( 'init', 'buu_register_faq_cpt' );
+
+/**
+ * Auto Seed Demo FAQ Posts if Database is empty
+ */
+function buu_seed_demo_faq_posts() {
+	if ( ! post_type_exists( 'cs_faq' ) ) {
+		return;
+	}
+
+	$counts = wp_count_posts( 'cs_faq' );
+	if ( isset( $counts->publish ) && (int) $counts->publish > 0 ) {
+		return;
+	}
+
+	$demo_faqs = array(
+		array(
+			'question' => 'คุณสมบัติและเกณฑ์การรับสมัครเข้าศึกษาเป็นอย่างไร?',
+			'answer'   => 'เปิดรับนักเรียนระดับชั้น ม.6, ปวช. หรือเทียบเท่าที่มีความสนใจด้านเทคโนโลยีและการเขียนโปรแกรม โดยในรอบ TCAS 1 (Portfolio) จะพิจารณาผลงาน โครงงาน หรือรางวัลการแข่งขัน ส่วนรอบ TCAS 3 (Admission) จะพิจารณาคะแนนสอบกลาง TGAT/TPAT3 และ A-Level ตามเกณฑ์ที่มหาวิทยาลัยกำหนด',
+			'order'    => 1,
+		),
+		array(
+			'question' => 'ค่าธรรมเนียมการศึกษาต่อภาคการศึกษาเท่าไหร่?',
+			'answer'   => 'ค่าธรรมเนียมการศึกษาเป็นแบบเหมาจ่ายตามประกาศของมหาวิทยาลัยบูรพา โดยเฉลี่ยประมาณ 18,000 - 24,000 บาทต่อภาคการศึกษา (ขึ้นอยู่กับประเภทหลักสูตรปกติหรือโครงการพิเศษ) และมีทุนการศึกษาสำหรับนิสิตเรียนดีและนิสิตขาดแคลนทุนทรัพย์',
+			'order'    => 2,
+		),
+		array(
+			'question' => 'มีโอกาสฝึกงานหรือทำสหกิจศึกษากับบริษัท Tech ชั้นนำหรือไม่?',
+			'answer'   => 'มีแน่นอน นิสิตชั้นปีที่ 4 ทุกคนจะได้เข้าร่วมโครงการสหกิจศึกษา (Co-operative Education) ปฏิบัติงานจริงเต็มเวลา 1 ภาคการศึกษากับบริษัทพันธมิตร เช่น KBTG, Agoda, LINE Thailand, Shopee, SCB TechX และหน่วยงานในเขตนวัตกรรม EEC',
+			'order'    => 3,
+		),
+		array(
+			'question' => 'หลักสูตรใช้เวลาเรียนกี่ปี และจบแล้วได้รับคุณวุฒิปริญญาอะไร?',
+			'answer'   => 'หลักสูตร 4 ปีการศึกษา (สามารถเรียนจบได้ใน 3.5 ปีหากวางแผนรายวิชาตามเกณฑ์) เมื่อสำเร็จการศึกษาจะได้รับคุณวุฒิ วิทยาศาสตรบัณฑิต (วท.บ.) / Bachelor of Science (B.Sc.) คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา',
+			'order'    => 4,
+		),
+	);
+
+	foreach ( $demo_faqs as $item ) {
+		wp_insert_post(
+			array(
+				'post_title'   => $item['question'],
+				'post_content' => $item['answer'],
+				'post_status'  => 'publish',
+				'post_type'    => 'cs_faq',
+				'menu_order'   => $item['order'],
+			)
+		);
+	}
+}
+add_action( 'init', 'buu_seed_demo_faq_posts', 20 );
+
+/**
  * Automatically flush rewrite rules once to register CPT permalinks in WordPress DB
  */
 function buu_ensure_gallery_rewrite_rules() {
