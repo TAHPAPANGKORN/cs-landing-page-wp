@@ -3369,6 +3369,58 @@ img.wp-smiley,
   border-radius: 50px;
 }
 
+/* ==========================================================================
+   Back to Top Floating Button Styling
+   ========================================================================== */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #F4B41A;
+  color: #002244;
+  border: none;
+  box-shadow: 0 4px 16px rgba(244, 180, 26, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+  z-index: 9999;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top-btn:hover {
+  background-color: #FFE082;
+  color: #001A35;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(244, 180, 26, 0.6);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+@media (max-width: 576px) {
+  .back-to-top-btn {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+
 
 
 
