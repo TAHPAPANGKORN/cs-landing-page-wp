@@ -26,6 +26,9 @@ get_template_part( 'template-parts/admission' );
 // Section 2.5: Specialization Tracks / Curriculum (หลักสูตร)
 get_template_part( 'template-parts/tracks' );
 
+// Section 2.8: Tools, Languages & Tech Stack (เครื่องมือ ภาษา และเนื้อหาที่เราจะได้เรียน)
+get_template_part( 'template-parts/tech-stack' );
+
 // Section 3: Dynamic News & Events (ข่าวสาร WP Posts)
 get_template_part( 'template-parts/news' );
 

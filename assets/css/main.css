@@ -2868,6 +2868,198 @@ img.wp-smiley,
   filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.2));
 }
 
+/* ==========================================================================
+   Tech Stack & Tools Section Styling (Matched Reference UI)
+   ========================================================================== */
+.bg-dark-slate {
+  background-color: #0A1120;
+  color: #FFFFFF;
+}
+
+.tech-stack-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.tech-main-title {
+  font-family: var(--font-family-heading), 'Prompt', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.text-gold-highlight {
+  color: #F4B41A;
+  font-weight: 800;
+}
+
+.tech-subtitle {
+  font-size: 1.05rem;
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.tech-stack-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .tech-stack-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.tech-category-group {
+  margin-bottom: 2rem;
+}
+
+.tech-cat-label {
+  font-family: var(--font-family-heading), 'Prompt', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.tech-cat-label.text-yellow { color: #F4B41A; }
+.tech-cat-label.text-green { color: #10B981; }
+.tech-cat-label.text-cyan { color: #06B6D4; }
+.tech-cat-label.text-pink { color: #F472B6; }
+
+.tech-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.tech-pill {
+  font-family: var(--font-family-heading), 'Prompt', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid #1E293B;
+  transition: all 0.25s ease;
+  display: inline-block;
+  cursor: default;
+}
+
+.tech-pill:hover {
+  transform: translateY(-2px);
+}
+
+.pill-yellow {
+  border-color: rgba(244, 180, 26, 0.45);
+  color: #F4B41A;
+}
+
+.pill-yellow:hover {
+  background: rgba(244, 180, 26, 0.12);
+  border-color: #F4B41A;
+  box-shadow: 0 4px 14px rgba(244, 180, 26, 0.25);
+}
+
+.pill-green {
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #10B981;
+}
+
+.pill-green:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: #10B981;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+
+.pill-cyan {
+  border-color: rgba(6, 182, 212, 0.45);
+  color: #06B6D4;
+}
+
+.pill-cyan:hover {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: #06B6D4;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.25);
+}
+
+.pill-pink {
+  border-color: rgba(244, 114, 182, 0.45);
+  color: #F472B6;
+}
+
+.pill-pink:hover {
+  background: rgba(244, 114, 182, 0.12);
+  border-color: #F472B6;
+  box-shadow: 0 4px 14px rgba(244, 114, 182, 0.25);
+}
+
+/* Feature Cards 2x2 Grid */
+.tech-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .tech-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tech-feature-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid #1E293B;
+  border-radius: 18px;
+  padding: 1.6rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.tech-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.tech-feature-card.border-gold:hover { border-color: #F4B41A; }
+.tech-feature-card.border-blue:hover { border-color: #38BDF8; }
+.tech-feature-card.border-cyan:hover { border-color: #2496ED; }
+.tech-feature-card.border-yellow:hover { border-color: #F7DF1E; }
+
+.tech-card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-card-title {
+  font-family: var(--font-family-heading), 'Prompt', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.tech-card-desc {
+  font-size: 0.84rem;
+  color: #94A3B8;
+  line-height: 1.55;
+  margin: 0;
+}
+
 
 
 
