@@ -8,7 +8,7 @@
 $news_query = new WP_Query(
 	array(
 		'post_type'      => 'post',
-		'posts_per_page' => 3,
+		'posts_per_page' => 6,
 		'post_status'    => 'publish',
 	)
 );
@@ -142,6 +142,18 @@ $news_query = new WP_Query(
                     </div>
                 </article>
             <?php endif; ?>
+        </div>
+
+        <!-- View All News CTA Button -->
+        <div class="news-footer text-center">
+            <?php
+            $posts_page_id   = get_option( 'page_for_posts' );
+            $news_archive_url = ( ! empty( $posts_page_id ) && '0' !== (string) $posts_page_id ) ? get_permalink( $posts_page_id ) : home_url( '/?post_type=post' );
+            ?>
+            <a href="<?php echo esc_url( $news_archive_url ); ?>" class="btn btn-outline-primary btn-lg">
+                <span>ดูข่าวสารทั้งหมด</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
         </div>
     </div>
 </section>

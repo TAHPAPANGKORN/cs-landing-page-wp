@@ -73,10 +73,10 @@ get_header();
                 <!-- Next & Previous Navigation Links -->
                 <nav class="card-post-nav" aria-label="Post Navigation">
                     <div class="nav-prev">
-                        <?php previous_post_link( '%link', '← %title' ); ?>
+                        <?php previous_post_link( '%link', '← ข่าวก่อนหน้า' ); ?>
                     </div>
                     <div class="nav-next">
-                        <?php next_post_link( '%link', '%title →' ); ?>
+                        <?php next_post_link( '%link', 'ข่าวต่อไป →' ); ?>
                     </div>
                 </nav>
             </div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Main Archive & News Gallery Template - Matched Homepage UI Design
+ * Archive & News Gallery Template - Matched Homepage UI Design
  *
  * @package BUU_SE_Landing
  */

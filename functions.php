@@ -166,7 +166,19 @@ function buu_get_post_cover_url( $post_id = null ) {
 		}
 	}
 
-	// 3. Fallback to Default BUU CS Premium Graphic (800x450 HD SVG)
+	// 3. Check for custom default image in Theme Assets (assets/images/default-news.jpg / .png / .webp)
+	$theme_dir  = get_template_directory();
+	$theme_uri  = get_template_directory_uri();
+	$extensions = array( 'jpg', 'jpeg', 'png', 'webp' );
+
+	foreach ( $extensions as $ext ) {
+		$custom_default_path = $theme_dir . '/assets/images/default-news.' . $ext;
+		if ( file_exists( $custom_default_path ) ) {
+			return $theme_uri . '/assets/images/default-news.' . $ext;
+		}
+	}
+
+	// 4. Fallback to Default BUU CS Premium Graphic (800x450 HD SVG)
 	return 'data:image/svg+xml;utf8,' . rawurlencode('
 		<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
 			<defs>

@@ -122,4 +122,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 6. Interactive Category Pill Filter for Archive Gallery Page
+    const pillTabs = document.querySelectorAll('.pill-tab');
+    const newsCards = document.querySelectorAll('.archive-news-card');
+
+    if (pillTabs.length > 0 && newsCards.length > 0) {
+        pillTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const filter = tab.getAttribute('data-filter');
+
+                // Toggle Active Tab
+                pillTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Filter Cards
+                newsCards.forEach(card => {
+                    if (filter === 'all' || card.classList.contains(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });

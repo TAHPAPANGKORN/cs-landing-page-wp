@@ -196,6 +196,26 @@ img {
   transform: translateY(-2px);
 }
 
+.btn-outline-primary {
+  background-color: #FFFFFF;
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.news-footer {
+  margin-top: 3.5rem;
+}
+
 /* ==========================================================================
    Sticky Navbar Header
    ========================================================================== */
@@ -997,18 +1017,66 @@ img {
   color: #334155;
 }
 
+.card-post-content p {
+  margin-bottom: 1.25rem;
+}
+
+/* WordPress Emoji & Inline Images Display Fix */
+img.emoji,
+img.wp-smiley,
+.card-post-content img.emoji,
+.article-body img.emoji {
+  display: inline !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 1.25em !important;
+  width: 1.25em !important;
+  margin: 0 0.25em !important;
+  vertical-align: -0.18em !important;
+  background: none !important;
+  padding: 0 !important;
+  float: none !important;
+}
+
 .card-post-nav {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
   width: 100%;
   margin-top: 2rem;
   font-family: var(--font-family-heading);
-  font-weight: 600;
+}
+
+.card-post-nav .nav-prev,
+.card-post-nav .nav-next {
+  max-width: 48%;
+}
+
+.card-post-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   color: var(--color-primary);
+  font-size: 0.95rem;
+  transition: color var(--transition-fast);
 }
 
 .card-post-nav a:hover {
   color: var(--color-accent-hover);
+}
+
+.card-post-nav .nav-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-accent-hover);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card-post-nav .nav-title {
+  font-weight: 600;
+  color: var(--color-primary-dark);
 }
 
 /* ==========================================================================
@@ -1411,4 +1479,113 @@ img {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
+}
+
+/* ==========================================================================
+   All News Archive & Activity Gallery - Reference Matched Styling
+   ========================================================================== */
+.archive-layout-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.archive-breadcrumbs {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.archive-breadcrumbs a {
+  color: var(--color-text-main);
+  font-weight: 500;
+}
+
+.archive-breadcrumbs a:hover {
+  color: var(--color-primary);
+}
+
+.archive-breadcrumbs .sep {
+  margin: 0 0.4rem;
+  color: #94A3B8;
+}
+
+.archive-breadcrumbs .current {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.archive-category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.archive-category-header .category-accent-bar {
+  width: 6px;
+  height: 32px;
+  background-color: var(--color-accent);
+  border-radius: 4px;
+}
+
+.archive-header-title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.archive-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.pill-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.35rem;
+  border-radius: var(--radius-full);
+  background-color: #FFFFFF;
+  color: var(--color-primary-dark);
+  font-family: var(--font-family-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.pill-tab:hover {
+  background-color: rgba(0, 51, 102, 0.06);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.pill-tab.active {
+  background-color: var(--color-primary-dark);
+  color: #FFFFFF;
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 4px 14px rgba(0, 51, 102, 0.25);
+}
+
+.pill-tab.active .pill-count {
+  color: var(--color-accent);
+}
+
+.pill-count {
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+.archive-news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
 }
