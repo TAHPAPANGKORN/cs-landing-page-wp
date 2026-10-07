@@ -35,7 +35,7 @@ get_header();
 
 				<!-- Category Section Title Header for Activity Gallery -->
 				<div class="post-category-header">
-					<span class="category-accent-bar" style="background-color: var(--accent-gold, #D97706);"></span>
+					<span class="category-accent-bar" style="background-color: var(--accent-gold, #F4B41A);"></span>
 					<h2 class="category-header-title">ภาพกิจกรรมของ <span class="dek-cs-text">DEK CS</span></h2>
 				</div>
 
@@ -43,7 +43,7 @@ get_header();
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'single-post-card-frame' ); ?>>
 					<!-- Activity Category Badge -->
 					<div class="activity-meta-badge-wrap" style="margin-bottom: 12px;">
-						<span class="gallery-cat-badge" style="background: rgba(217, 119, 6, 0.12); color: #D97706; font-weight: 600; padding: 6px 14px; border-radius: 20px; display: inline-block; font-size: 0.875rem;">
+						<span class="gallery-cat-badge" style="background: rgba(244, 180, 26, 0.15); color: #F4B41A; font-weight: 600; padding: 6px 14px; border-radius: 20px; display: inline-block; font-size: 0.875rem;">
 							<i class="fas fa-tag"></i> <?php echo esc_html( $term_name ); ?>
 						</span>
 					</div>

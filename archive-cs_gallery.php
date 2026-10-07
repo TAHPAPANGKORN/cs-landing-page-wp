@@ -39,7 +39,7 @@ $gallery_query = new WP_Query(
 
 			<!-- Category Section Title Header -->
 			<div class="archive-category-header">
-				<span class="category-accent-bar" style="background-color: #D97706;"></span>
+				<span class="category-accent-bar" style="background-color: #F4B41A;"></span>
 				<h1 class="archive-header-title">ภาพบรรยากาศกิจกรรม <span class="dek-cs-text">DEK CS</span></h1>
 			</div>
 

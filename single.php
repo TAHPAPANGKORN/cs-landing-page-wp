@@ -22,7 +22,7 @@ get_header();
 			$parent_url    = $is_gallery ? home_url( '/#gallery' ) : home_url( '/#news' );
 			$parent_title  = $is_gallery ? 'ภาพกิจกรรม' : 'ข่าวสาร';
 			$section_title = $is_gallery ? 'ภาพบรรยากาศกิจกรรม' : 'ข่าวสาร & กิจกรรม';
-			$accent_style  = $is_gallery ? 'style="background-color: #D97706;"' : '';
+			$accent_style  = $is_gallery ? 'style="background-color: #F4B41A;"' : '';
 			?>
             <div class="single-post-layout-container">
                 <!-- Breadcrumbs Navigation -->

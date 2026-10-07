@@ -24,7 +24,7 @@ get_header();
 
 				<!-- Page Header -->
 				<div class="post-category-header">
-					<span class="category-accent-bar" style="background-color: #D97706;"></span>
+					<span class="category-accent-bar" style="background-color: #F4B41A;"></span>
 					<h1 class="category-header-title"><?php the_title(); ?></h1>
 				</div>
 

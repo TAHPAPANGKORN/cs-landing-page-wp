@@ -16,7 +16,7 @@ $is_gallery = ( 'cs_gallery' === $current_post_type || is_post_type_archive( 'cs
 if ( $is_gallery ) {
 	$page_title    = 'ภาพบรรยากาศกิจกรรม <span class="dek-cs-text">DEK CS</span>';
 	$crumb_title   = 'ภาพกิจกรรม';
-	$accent_color  = '#D97706';
+	$accent_color  = '#F4B41A';
 	$target_cpt    = 'cs_gallery';
 	$gallery_terms = get_terms( array( 'taxonomy' => 'gallery_category', 'hide_empty' => false ) );
 } else {
