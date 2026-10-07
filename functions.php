@@ -655,6 +655,23 @@ function buu_seed_demo_faculty_posts() {
 }
 add_action( 'init', 'buu_seed_demo_faculty_posts', 20 );
 
+/**
+ * Filter document title to "วิทยาการคอมพิวเตอร์ BUU | คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา"
+ */
+function buu_cs_custom_document_title( $title ) {
+	if ( is_front_page() || is_home() ) {
+		return 'วิทยาการคอมพิวเตอร์ BUU | คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา';
+	}
+	return $title;
+}
+add_filter( 'pre_get_document_title', 'buu_cs_custom_document_title', 999 );
+
+function buu_cs_custom_blogname( $name ) {
+	return 'วิทยาการคอมพิวเตอร์ BUU';
+}
+add_filter( 'option_blogname', 'buu_cs_custom_blogname' );
+
+
 
 
 
