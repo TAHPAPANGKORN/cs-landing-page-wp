@@ -29,6 +29,9 @@ get_template_part( 'template-parts/tracks' );
 // Section 2.8: Tools, Languages & Tech Stack (เครื่องมือ ภาษา และเนื้อหาที่เราจะได้เรียน)
 get_template_part( 'template-parts/tech-stack' );
 
+// Section 2.9: CS BUU Faculty & Staff (คณาจารย์และบุคลากร)
+get_template_part( 'template-parts/faculty' );
+
 // Section 3: Dynamic News & Events (ข่าวสาร WP Posts)
 get_template_part( 'template-parts/news' );
 

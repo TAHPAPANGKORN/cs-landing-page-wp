@@ -37,6 +37,7 @@
 						<span class="tech-pill pill-yellow">CSS</span>
 						<span class="tech-pill pill-yellow">JavaScript</span>
 						<span class="tech-pill pill-yellow">TypeScript</span>
+						<span class="tech-pill pill-yellow">Vue.js</span>
 					</div>
 				</div>
 
@@ -110,14 +111,14 @@
 						</p>
 					</div>
 
-					<!-- Card 4: JS & TS -->
+					<!-- Card 4: JS, TS & Vue.js -->
 					<div class="tech-feature-card border-yellow">
 						<div class="tech-card-icon">
-							<i class="fab fa-js-square" style="color: #F7DF1E;"></i>
+							<i class="fab fa-vuejs" style="color: #4FC08D;"></i>
 						</div>
-						<h3 class="tech-card-title">JavaScript & TypeScript</h3>
+						<h3 class="tech-card-title">JavaScript, TypeScript & Vue.js</h3>
 						<p class="tech-card-desc">
-							สร้างเว็บแอปพลิเคชันเชิงโต้ตอบและระบบบันทึกข้อมูลไดนามิกยุคใหม่
+							สร้างเว็บแอปพลิเคชันด้วย Modern Web Framework และระบบประมวลผลไดนามิกยุคใหม่
 						</p>
 					</div>
 

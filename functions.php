@@ -483,6 +483,179 @@ function buu_seed_demo_gallery_posts() {
 }
 add_action( 'init', 'buu_seed_demo_gallery_posts', 20 );
 
+/**
+ * Register Custom Post Type: Faculty & Lecturers (คณาจารย์ & บุคลากร)
+ */
+function buu_register_faculty_cpt() {
+	$labels = array(
+		'name'               => 'คณาจารย์ & บุคลากร',
+		'singular_name'      => 'อาจารย์/บุคลากร',
+		'add_new'            => 'เพิ่มอาจารย์ใหม่',
+		'add_new_item'       => 'เพิ่มอาจารย์/บุคลากรใหม่',
+		'edit_item'          => 'แก้ไขข้อมูลอาจารย์/บุคลากร',
+		'new_item'           => 'อาจารย์/บุคลากรใหม่',
+		'all_items'          => 'คณาจารย์ & บุคลากรทั้งหมด',
+		'view_item'          => 'ดูข้อมูลอาจารย์/บุคลากร',
+		'search_items'       => 'ค้นหาอาจารย์/บุคลากร',
+		'not_found'          => 'ไม่พบข้อมูลอาจารย์',
+		'not_found_in_trash' => 'ไม่พบในถังขยะ',
+		'menu_name'          => 'คณาจารย์ & บุคลากร',
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'has_archive'        => false,
+		'menu_icon'          => 'dashicons-welcome-learn-more',
+		'supports'           => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+		'show_in_rest'       => true,
+		'hierarchical'       => false,
+	);
+
+	register_post_type( 'cs_faculty', $args );
+}
+add_action( 'init', 'buu_register_faculty_cpt' );
+
+/**
+ * Add Meta Box for Faculty Details (Position, Email, Expertise)
+ */
+function buu_add_faculty_metaboxes() {
+	add_meta_box(
+		'cs_faculty_details_mb',
+		'ข้อมูลตำแหน่งและความเชี่ยวชาญอาจารย์ (Faculty Info)',
+		'buu_render_faculty_metabox',
+		'cs_faculty',
+		'normal',
+		'high'
+	);
+}
+add_action( 'add_meta_boxes', 'buu_add_faculty_metaboxes' );
+
+function buu_render_faculty_metabox( $post ) {
+	wp_nonce_field( 'buu_save_faculty_meta', 'buu_faculty_meta_nonce' );
+	$position  = get_post_meta( $post->ID, '_faculty_position', true );
+	$email     = get_post_meta( $post->ID, '_faculty_email', true );
+	$expertise = get_post_meta( $post->ID, '_faculty_expertise', true );
+	?>
+	<p>
+		<label for="faculty_position"><strong>ตำแหน่งทางวิชาการ / บริหาร:</strong></label><br />
+		<input type="text" id="faculty_position" name="faculty_position" value="<?php echo esc_attr( $position ); ?>" style="width:100%;" placeholder="เช่น ประธานหลักสูตร, คณบดี, อาจารย์ประจำสาขา" />
+	</p>
+	<p>
+		<label for="faculty_email"><strong>อีเมลติดต่อ (Email):</strong></label><br />
+		<input type="email" id="faculty_email" name="faculty_email" value="<?php echo esc_attr( $email ); ?>" style="width:100%;" placeholder="เช่น email@buu.ac.th" />
+	</p>
+	<p>
+		<label for="faculty_expertise"><strong>สาขาความเชี่ยวชาญ (ใส่คั่นด้วยเครื่องหมายจุลภาค ,):</strong></label><br />
+		<input type="text" id="faculty_expertise" name="faculty_expertise" value="<?php echo esc_attr( $expertise ); ?>" style="width:100%;" placeholder="เช่น Artificial Intelligence, Machine Learning, Data Science" />
+	</p>
+	<p class="description">
+		* หมายเหตุ: คุณสามารถเปลี่ยนลำดับการแสดงผลของอาจารย์ได้ทางกล่อง <strong>"คุณลักษณะของหน้า (Page Attributes)" -> ลำดับ (Order)</strong> ทางขวามือ (ตัวเลขอันดับน้อยกว่าจะขึ้นก่อน)
+	</p>
+	<?php
+}
+
+function buu_save_faculty_meta( $post_id ) {
+	if ( ! isset( $_POST['buu_faculty_meta_nonce'] ) || ! wp_verify_nonce( $_POST['buu_faculty_meta_nonce'], 'buu_save_faculty_meta' ) ) {
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	if ( isset( $_POST['faculty_position'] ) ) {
+		update_post_meta( $post_id, '_faculty_position', sanitize_text_field( $_POST['faculty_position'] ) );
+	}
+	if ( isset( $_POST['faculty_email'] ) ) {
+		update_post_meta( $post_id, '_faculty_email', sanitize_email( $_POST['faculty_email'] ) );
+	}
+	if ( isset( $_POST['faculty_expertise'] ) ) {
+		update_post_meta( $post_id, '_faculty_expertise', sanitize_text_field( $_POST['faculty_expertise'] ) );
+	}
+}
+add_action( 'save_post_cs_faculty', 'buu_save_faculty_meta' );
+
+/**
+ * Auto Seed Demo CS BUU Faculty Members if database is empty
+ */
+function buu_seed_demo_faculty_posts() {
+	if ( ! post_type_exists( 'cs_faculty' ) ) {
+		return;
+	}
+
+	$counts = wp_count_posts( 'cs_faculty' );
+	if ( isset( $counts->publish ) && (int) $counts->publish > 0 ) {
+		return;
+	}
+
+	$demo_faculty = array(
+		array(
+			'title'     => 'ดร.วรัณรัชญ์ วิริยะวิทย์',
+			'position'  => 'ประธานหลักสูตรวิทยาการคอมพิวเตอร์',
+			'email'     => 'warunrat@buu.ac.th',
+			'expertise' => 'Artificial Intelligence, Machine Learning, Data Science',
+			'order'     => 1,
+		),
+		array(
+			'title'     => 'ผศ.ภูสิต กุลเกษม',
+			'position'  => 'คณบดีคณะวิทยาการสารสนเทศ & อาจารย์',
+			'email'     => 'poosit@buu.ac.th',
+			'expertise' => 'Computer Architecture, Parallel Computing, High-Performance Systems',
+			'order'     => 2,
+		),
+		array(
+			'title'     => 'ผศ.ดร.พิเชษ วะยะลุน',
+			'position'  => 'อาจารย์ประจำสาขาวิชาวิทยาการคอมพิวเตอร์',
+			'email'     => 'pichet@buu.ac.th',
+			'expertise' => 'Machine Learning, IoT & Embedded Systems, Medical Image Processing',
+			'order'     => 3,
+		),
+		array(
+			'title'     => 'ผศ.วรวิทย์ วีระพันธุ์',
+			'position'  => 'อาจารย์ประจำสาขาวิชาวิทยาการคอมพิวเตอร์',
+			'email'     => 'worawit@buu.ac.th',
+			'expertise' => 'Software Engineering, Artificial Intelligence, Data Mining',
+			'order'     => 4,
+		),
+		array(
+			'title'     => 'ผศ.เบญจภรณ์ จันทรกองกุล',
+			'position'  => 'อาจารย์ประจำสาขาวิชาวิทยาการคอมพิวเตอร์',
+			'email'     => 'benjaporn@buu.ac.th',
+			'expertise' => 'Management Information Systems, Decision Support, Bioinformatics',
+			'order'     => 5,
+		),
+		array(
+			'title'     => 'ผศ.จรรยา อ้นปันส์',
+			'position'  => 'อาจารย์ประจำสาขาวิชาวิทยาการคอมพิวเตอร์',
+			'email'     => 'janya@buu.ac.th',
+			'expertise' => 'Software Engineering, Database Systems, Web Application Development',
+			'order'     => 6,
+		),
+	);
+
+	foreach ( $demo_faculty as $member ) {
+		$post_id = wp_insert_post(
+			array(
+				'post_title'  => $member['title'],
+				'post_status' => 'publish',
+				'post_type'   => 'cs_faculty',
+				'menu_order'  => $member['order'],
+			)
+		);
+
+		if ( $post_id && ! is_wp_error( $post_id ) ) {
+			update_post_meta( $post_id, '_faculty_position', $member['position'] );
+			update_post_meta( $post_id, '_faculty_email', $member['email'] );
+			update_post_meta( $post_id, '_faculty_expertise', $member['expertise'] );
+		}
+	}
+}
+add_action( 'init', 'buu_seed_demo_faculty_posts', 20 );
+
+
 
 
 

@@ -29,6 +29,7 @@
                 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link">หน้าแรก</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#admission' ) ); ?>" class="nav-link">การรับสมัคร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="nav-link">หลักสูตร</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#faculty' ) ); ?>" class="nav-link">คณาจารย์</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#news' ) ); ?>" class="nav-link">ข่าวสาร</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#gallery' ) ); ?>" class="nav-link">ภาพกิจกรรม</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>" class="nav-link">FAQ</a></li>
@@ -79,6 +80,12 @@
                 <li>
                     <a href="<?php echo esc_url( home_url( '/#tracks' ) ); ?>" class="drawer-link">
                         <span>หลักสูตร</span>
+                        <i class="fas fa-chevron-right drawer-arrow"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo esc_url( home_url( '/#faculty' ) ); ?>" class="drawer-link">
+                        <span>คณาจารย์ & บุคลากร</span>
                         <i class="fas fa-chevron-right drawer-arrow"></i>
                     </a>
                 </li>

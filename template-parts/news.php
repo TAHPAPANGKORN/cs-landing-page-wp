@@ -18,7 +18,7 @@ $news_query = new WP_Query(
     <div class="container">
         <div class="section-header text-center">
             <span class="section-badge">ข่าวสาร & กิจกรรม</span>
-            <h2 class="section-title">อัปเดตล่าสุดจากภาควิชา</h2>
+            <h2 class="section-title">ข่าวที่เกี่ยวข้องกับสาขาวิชา</h2>
             <p class="section-subtitle">
                 ติดตามข่าวสารการรับสมัคร กิจกรรมนิสิต และความเคลื่อนไหวทางด้านเทคโนโลยีของ คณะวิทยาการสารสนเทศ
             </p>
