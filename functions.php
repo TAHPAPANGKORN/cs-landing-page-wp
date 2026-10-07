@@ -108,3 +108,87 @@ function buu_se_nav_menu_link_attributes( $atts, $item, $args ) {
 	return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'buu_se_nav_menu_link_attributes', 10, 3 );
+
+/**
+ * Get Post Cover Image URL with Smart Filtering & Min-Resolution Safeguard
+ * 1. Post Featured Image (full resolution)
+ * 2. Scan Post Content for valid news photos (ignoring emojis, avatars, small icons < 350px)
+ * 3. High-Resolution BUU CS Premium SVG Graphic (800x450 HD)
+ */
+function buu_get_post_cover_url( $post_id = null ) {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+
+	// 1. Check Featured Image (force 'full' size for maximum sharpness)
+	if ( has_post_thumbnail( $post_id ) ) {
+		$thumb_url = get_the_post_thumbnail_url( $post_id, 'full' );
+		if ( ! empty( $thumb_url ) ) {
+			return $thumb_url;
+		}
+	}
+
+	// 2. Scan Post Content for valid news images
+	$post = get_post( $post_id );
+	if ( $post && ! empty( $post->post_content ) ) {
+		if ( preg_match_all( '/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', $post->post_content, $matches, PREG_SET_ORDER ) ) {
+			$upload_dir = wp_upload_dir();
+			$base_url   = isset( $upload_dir['baseurl'] ) ? $upload_dir['baseurl'] : '';
+			$base_dir   = isset( $upload_dir['basedir'] ) ? $upload_dir['basedir'] : '';
+
+			foreach ( $matches as $match ) {
+				$img_tag = $match[0];
+				$img_url = $match[1];
+
+				// Skip emojis, smileys, avatars, icons
+				if ( preg_match( '/(emoji|wp-smiley|avatar|gravatar|dashicons|s\.w\.org)/i', $img_tag . $img_url ) ) {
+					continue;
+				}
+
+				// Strip WP thumbnail dimension suffix (-300x200, -150x150, etc.) to get original uploaded file
+				$high_res_url = preg_replace( '/-\d+x\d+(\.[a-zA-Z0-9]+)$/i', '$1', $img_url );
+				$target_url   = ! empty( $high_res_url ) ? $high_res_url : $img_url;
+
+				// Local file dimension check (ensure width >= 350px to prevent pixelated icons)
+				if ( ! empty( $base_url ) && ! empty( $base_dir ) && false !== strpos( $target_url, $base_url ) ) {
+					$file_path = str_replace( $base_url, $base_dir, $target_url );
+					if ( file_exists( $file_path ) ) {
+						$size_info = @getimagesize( $file_path );
+						if ( $size_info && isset( $size_info[0] ) && $size_info[0] < 350 ) {
+							// Image is too small (e.g. icon/thumbnail < 350px wide) -> Skip it!
+							continue;
+						}
+					}
+				}
+
+				return $target_url;
+			}
+		}
+	}
+
+	// 3. Fallback to Default BUU CS Premium Graphic (800x450 HD SVG)
+	return 'data:image/svg+xml;utf8,' . rawurlencode('
+		<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+			<defs>
+				<linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#001F3F"/>
+					<stop offset="50%" stop-color="#003366"/>
+					<stop offset="100%" stop-color="#051329"/>
+				</linearGradient>
+				<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+					<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+				</pattern>
+			</defs>
+			<rect width="100%" height="100%" fill="url(#bg)"/>
+			<rect width="100%" height="100%" fill="url(#grid)"/>
+			<circle cx="700" cy="80" r="220" fill="rgba(244,180,26,0.08)"/>
+			<text x="40" y="380" fill="#F4B41A" font-family="sans-serif" font-size="22" font-weight="bold">INFORMATICS BURAPHA</text>
+			<text x="40" y="410" fill="#FFFFFF" font-family="sans-serif" font-size="16" opacity="0.8">Computer Science • BUU</text>
+			<g transform="translate(360, 160)" opacity="0.5">
+				<rect x="0" y="0" width="80" height="80" rx="16" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+				<path d="M 25 30 L 15 40 L 25 50 M 55 30 L 65 40 L 55 50 M 45 25 L 35 55" stroke="#F4B41A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+			</g>
+		</svg>
+	');
+}
+

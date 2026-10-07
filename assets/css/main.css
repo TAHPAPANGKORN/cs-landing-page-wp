@@ -295,7 +295,7 @@ img {
 }
 
 .header-actions {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 1rem;
 }
@@ -400,44 +400,28 @@ img {
    ========================================================================== */
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #002244 0%, #003366 50%, #0A192F 100%);
+  background: linear-gradient(135deg, #001A35 0%, #002B49 50%, #051329 100%);
   color: #FFFFFF;
-  padding-top: 5rem;
-  padding-bottom: 6rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-height, 72px) + 1.5rem);
+  padding-bottom: 2.5rem;
   overflow: hidden;
+}
+
+.hero-container {
+  width: 100%;
 }
 
 .hero-grid-pattern {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
   pointer-events: none;
-}
-
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  opacity: 0.4;
-}
-
-.hero-orb-primary {
-  width: 450px;
-  height: 450px;
-  top: -100px;
-  right: -50px;
-  background: radial-gradient(circle, rgba(244, 180, 26, 0.4), transparent 70%);
-}
-
-.hero-orb-secondary {
-  width: 350px;
-  height: 350px;
-  bottom: -50px;
-  left: -50px;
-  background: radial-gradient(circle, rgba(0, 102, 204, 0.5), transparent 70%);
 }
 
 .hero-layout {
@@ -815,19 +799,29 @@ img {
 
 .news-media {
   position: relative;
-  height: 200px;
+  height: 210px;
+  width: 100%;
   overflow: hidden;
+  background-color: var(--color-primary-dark);
+}
+
+.news-media-link {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .news-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
   transition: transform var(--transition-smooth);
 }
 
 .news-card:hover .news-img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .news-img-placeholder {
@@ -1403,6 +1397,10 @@ img {
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
+  }
+
+  .header-actions {
+    display: flex;
   }
 
   .mobile-toggle {

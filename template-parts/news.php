@@ -32,15 +32,9 @@ $news_query = new WP_Query(
 					?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class( 'news-card' ); ?>>
                         <div class="news-media">
-                            <?php if ( has_post_thumbnail() ) : ?>
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail( 'medium_large', array( 'class' => 'news-img' ) ); ?>
-                                </a>
-                            <?php else : ?>
-                                <div class="news-img-placeholder">
-                                    <span class="placeholder-icon">📰</span>
-                                </div>
-                            <?php endif; ?>
+                            <a href="<?php the_permalink(); ?>" class="news-media-link">
+                                <img src="<?php echo esc_url( buu_get_post_cover_url( get_the_ID() ) ); ?>" class="news-img" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+                            </a>
                             <span class="news-category-badge">
                                 <?php
 								$categories = get_the_category();
