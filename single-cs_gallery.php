@@ -59,8 +59,9 @@ get_header();
 
 					<!-- Featured Image / Cover Media -->
 					<?php if ( ! empty( $cover_url ) ) : ?>
-						<div class="card-post-media" style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
-							<img src="<?php echo esc_url( $cover_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="card-post-img" style="width: 100%; height: auto; display: block; max-height: 520px; object-fit: cover;" />
+						<div class="card-post-media" style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); position: relative;">
+							<img src="<?php echo esc_url( $cover_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="card-post-img" style="width: 100%; height: auto; display: block; max-height: 520px; object-fit: cover; cursor: zoom-in;" />
+							<span class="lightbox-hint-badge" style="position: absolute; bottom: 12px; right: 12px; background: rgba(0, 31, 63, 0.75); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; backdrop-filter: blur(4px); pointer-events: none;"><i class="fas fa-search-plus"></i> คลิกเพื่อดูรูปขนาดใหญ่</span>
 						</div>
 					<?php endif; ?>
 

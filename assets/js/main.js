@@ -276,6 +276,129 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 10. Interactive Lightbox Photo Viewer for Single Activity Posts
+    const articleImages = document.querySelectorAll('.single-post-card-frame img, .article-body img, .card-post-media img');
+
+    if (articleImages.length > 0) {
+        let imageList = [];
+        articleImages.forEach(img => {
+            if (img.width > 0 && img.width < 50 && img.height < 50) return;
+
+            img.style.cursor = 'zoom-in';
+            img.title = 'คลิกเพื่อดูรูปภาพขนาดใหญ่';
+
+            const src = img.getAttribute('src');
+            if (!src) return;
+
+            const alt = img.getAttribute('alt') || document.title || 'ภาพกิจกรรม CS BUU';
+            const fullSrc = src.replace(/-\d+x\d+(\.[a-zA-Z0-9]+)$/i, '$1');
+
+            imageList.push({ src: fullSrc, alt: alt, element: img });
+        });
+
+        if (imageList.length > 0) {
+            const lightbox = document.createElement('div');
+            lightbox.className = 'cs-lightbox-modal';
+            lightbox.id = 'csLightboxModal';
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightbox.innerHTML = `
+                <div class="cs-lightbox-backdrop"></div>
+                <div class="cs-lightbox-dialog">
+                    <div class="cs-lightbox-topbar">
+                        <span class="cs-lightbox-counter" id="csLightboxCounter">1 / 1</span>
+                        <span class="cs-lightbox-caption" id="csLightboxCaption"></span>
+                        <button type="button" class="cs-lightbox-close" id="csLightboxClose" aria-label="ปิด"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="cs-lightbox-body">
+                        <button type="button" class="cs-lightbox-nav prev" id="csLightboxPrev" aria-label="รูปภาพก่อนหน้า"><i class="fas fa-chevron-left"></i></button>
+                        <div class="cs-lightbox-img-wrap">
+                            <img src="" id="csLightboxImg" alt="" />
+                        </div>
+                        <button type="button" class="cs-lightbox-nav next" id="csLightboxNext" aria-label="รูปภาพถัดไป"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+
+            const counterEl = document.getElementById('csLightboxCounter');
+            const captionEl = document.getElementById('csLightboxCaption');
+            const imgEl = document.getElementById('csLightboxImg');
+            const closeBtn = document.getElementById('csLightboxClose');
+            const prevBtn = document.getElementById('csLightboxPrev');
+            const nextBtn = document.getElementById('csLightboxNext');
+            const backdrop = lightbox.querySelector('.cs-lightbox-backdrop');
+
+            let currentIndex = 0;
+
+            function showImage(index) {
+                currentIndex = (index + imageList.length) % imageList.length;
+                const item = imageList[currentIndex];
+
+                imgEl.style.opacity = '0';
+                imgEl.style.transform = 'scale(0.96)';
+
+                setTimeout(() => {
+                    imgEl.src = item.src;
+                    imgEl.alt = item.alt;
+                    
+                    const postTitle = document.querySelector('.card-post-title')?.textContent?.trim() || '';
+                    const captionText = (item.alt && item.alt !== 'ภาพกิจกรรม CS BUU' && item.alt !== 'Computer Science BUU') ? item.alt : (postTitle || 'วิทยาการคอมพิวเตอร์ BUU');
+                    captionEl.textContent = captionText;
+                    counterEl.textContent = `รูปที่ ${currentIndex + 1} จาก ${imageList.length}`;
+
+                    imgEl.style.opacity = '1';
+                    imgEl.style.transform = 'scale(1)';
+                }, 120);
+
+                if (imageList.length <= 1) {
+                    prevBtn.style.display = 'none';
+                    nextBtn.style.display = 'none';
+                } else {
+                    prevBtn.style.display = 'flex';
+                    nextBtn.style.display = 'flex';
+                }
+            }
+
+            function openLightbox(index) {
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                showImage(index);
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            imageList.forEach((item, index) => {
+                item.element.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            backdrop.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showImage(currentIndex - 1);
+            });
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showImage(currentIndex + 1);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+                if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+            });
+        }
+    }
 });
 
 
