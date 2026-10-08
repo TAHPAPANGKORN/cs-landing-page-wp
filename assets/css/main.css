@@ -1883,30 +1883,27 @@ img.wp-smiley,
 
 .qual-pill-item {
   background-color: #F8FAFC;
-  border: 1px solid #F1F5F9;
-  border-radius: 9999px;
-  padding: 0.85rem 1.5rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 0.9rem 1.25rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
 }
 
 .qual-pill-icon.gold-dot {
   color: #F4B41A;
-  font-size: 0.6rem;
-  line-height: 1;
+  font-size: 0.55rem;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
 }
 
 .qual-pill-text {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: #334155;
-}
-
-.qual-pill-text {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #334155;
+  line-height: 1.45;
 }
 
 /* ==========================================================================
@@ -3676,6 +3673,153 @@ img.wp-smiley,
 @media (max-width: 480px) {
   .cs-lightbox-caption {
     display: none;
+  }
+}
+
+/* ==========================================================================
+   Comprehensive Site-Wide Mobile Responsiveness & UX Polish
+   ========================================================================== */
+
+/* 1. Global Touch & Scroll Utilities */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+  
+  .section-padding {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 5vw, 2.1rem);
+  }
+
+  .hero-br-desktop {
+    display: none !important;
+  }
+
+  /* Touch scrolling containers */
+  .tcas-cards-grid,
+  .gallery-filter-wrap,
+  .archive-pills-wrap,
+  .tech-pills-wrap {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .tcas-cards-grid::-webkit-scrollbar,
+  .gallery-filter-wrap::-webkit-scrollbar,
+  .archive-pills-wrap::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 2. TCAS Admission System Swipeable Cards on Mobile */
+@media (max-width: 768px) {
+  .tcas-cards-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: -0.75rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .tcas-select-card {
+    flex: 0 0 85%;
+    min-width: 270px;
+    scroll-snap-align: center;
+  }
+
+  .criteria-two-cols,
+  .credits-boxes-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+
+/* 3. Hero Section Stacked Buttons & Spacing */
+@media (max-width: 576px) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-tags {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .tag-pill {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+/* 4. Filter Pills Horizontal Swipe */
+@media (max-width: 768px) {
+  .gallery-filter-wrap,
+  .archive-pills-wrap {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start !important;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.75rem !important;
+  }
+
+  .gallery-filter-btn,
+  .pill-tab {
+    flex-shrink: 0;
+  }
+}
+
+/* 5. Mobile Layout Grids (Faculty, Tech Stack, News, Footer) */
+@media (max-width: 768px) {
+  .tech-stack-grid-layout,
+  .row-top-grid,
+  .row-two-cols,
+  .footer-top-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .tech-feature-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .faculty-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .news-grid,
+  .archive-news-grid,
+  .gallery-archive-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .faculty-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
