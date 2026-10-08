@@ -525,12 +525,12 @@ img {
   position: relative;
   background: linear-gradient(135deg, #001A35 0%, #002B49 50%, #051329 100%);
   color: #FFFFFF;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: calc(100vh - var(--header-height, 80px));
+  min-height: calc(100dvh - var(--header-height, 80px));
   display: flex;
   align-items: center;
-  padding-top: calc(var(--header-height, 72px) + 1.5rem);
-  padding-bottom: 2.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   overflow: hidden;
 }
 
@@ -563,10 +563,10 @@ img {
   background-color: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-full);
-  padding: 0.45rem 1.1rem;
-  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.85rem;
   backdrop-filter: blur(8px);
 }
 
@@ -587,10 +587,10 @@ img {
 
 .hero-title {
   font-family: var(--font-family-heading);
-  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
   font-weight: 800;
   line-height: 1.15;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .hero-title-accent {
@@ -601,10 +601,10 @@ img {
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.65;
-  margin-bottom: 2.25rem;
+  line-height: 1.55;
+  margin-bottom: 1.35rem;
   max-width: 620px;
 }
 
@@ -612,7 +612,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.35rem;
 }
 
 .hero-tags {
@@ -631,6 +631,74 @@ img {
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* Hero Explore Bottom Center Link */
+.hero-explore-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-explore-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+  line-height: 1;
+  transition: all var(--transition-normal);
+  animation: heroExploreBounce 2.5s infinite ease-in-out;
+}
+
+.hero-explore-link span {
+  display: inline-block;
+  line-height: 1;
+}
+
+.hero-explore-link svg {
+  display: block;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+  transition: transform var(--transition-fast);
+}
+
+.hero-explore-link:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-accent);
+  transform: translateY(3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-explore-link:hover svg {
+  transform: translateY(2px);
+}
+
+@keyframes heroExploreBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(6px);
+  }
+  60% {
+    transform: translateY(3px);
+  }
+}
+
 /* Hero Single Large Auto-Fade Slider Card */
 .hero-media-shell {
   position: relative;
@@ -639,7 +707,7 @@ img {
 .hero-single-slider {
   position: relative;
   width: 100%;
-  height: 460px;
+  height: clamp(340px, 44vh, 420px);
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -3759,12 +3827,31 @@ img.wp-smiley,
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    align-items: center;
     gap: 0.75rem;
   }
 
-  .hero-actions .btn {
+  .hero-actions .hero-cta-primary {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-actions .hero-cta-secondary {
+    width: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin: 0.25rem auto 0 auto !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 0.82rem;
+    padding: 0.45rem 1.15rem;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    gap: 0.4rem;
   }
 }
 

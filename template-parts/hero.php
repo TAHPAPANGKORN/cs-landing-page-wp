@@ -74,17 +74,13 @@ $gallery_archive_link = get_post_type_archive_link( 'cs_gallery' ) ?: '#gallery'
                 </h1>
 
                 <p class="hero-subtitle">
-                    มุ่งเน้นทฤษฎีการคำนวณ, ปัญญาประดิษฐ์ (AI) และวิศวกรรมซอฟต์แวร์ ผลิตนักวิทยาศาสตร์คอมพิวเตอร์และนักพัฒนาชั้นนำ พร้อมก้าวสู่สายงานเทคโนโลยีแห่งอนาคต
+                    มุ่งเน้นทฤษฎีการคำนวณ, ปัญญาประดิษฐ์ การพัฒนาซอฟต์แวร์ ผลิตนักวิทยาศาสตร์คอมพิวเตอร์ พร้อมก้าวสู่สายงานเทคโนโลยีแห่งอนาคต
                 </p>
 
                 <div class="hero-actions">
                     <a href="#admission" class="btn btn-gold btn-lg hero-cta-primary">
                         <span>ขั้นตอนการสมัครเรียน</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
-                    <a href="#video-showcase" class="btn btn-outline-light btn-lg hero-cta-secondary">
-                        <span>Explore More</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 16 12 12 16"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
                     </a>
                 </div>
 
@@ -123,6 +119,14 @@ $gallery_archive_link = get_post_type_archive_link( 'cs_gallery' ) ?: '#gallery'
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Bottom Centered Explore More Link -->
+        <div class="hero-explore-bottom">
+            <a href="#video-showcase" class="hero-explore-link">
+                <span>EXPLORE MORE</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 8 12 13 17 8"></polyline><polyline points="7 13 12 18 17 13"></polyline></svg>
+            </a>
         </div>
     </div>
 </section>
