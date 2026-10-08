@@ -249,6 +249,13 @@ img {
   gap: 0.75rem;
 }
 
+.brand-logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .logo-badge {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: var(--color-accent);

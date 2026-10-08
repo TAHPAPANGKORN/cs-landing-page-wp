@@ -12,11 +12,9 @@
             <!-- Footer Col 1: Brand & Bio -->
             <div class="footer-col brand-col">
                 <div class="footer-logo">
-                    <div class="logo-badge">
-                        <span class="logo-code">CS</span>
-                    </div>
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/buu-logo.png' ); ?>" alt="Computer Science BUU" class="brand-logo-img" />
                     <div class="logo-text">
-                        <span class="logo-title">Computer Science</span>
+                        <span class="logo-title">COMPUTER SCIENCE</span>
                         <span class="logo-sub">INFORMATICS BURAPHA</span>
                     </div>
                 </div>
