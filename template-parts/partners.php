@@ -59,18 +59,18 @@ $default_partners = array(
 						$partners_query->the_post();
 						$logo_url = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'full' ) : '';
 						?>
-						<?php if ( $logo_url ) : ?>
-                            <div class="partner-card-item">
-                                <div class="partner-logo-box">
-                                    <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="partner-logo-img" />
-                                </div>
-                                <div class="partner-name"><?php the_title(); ?></div>
-                            </div>
-						<?php else : ?>
-                            <div class="partner-card-item partner-text-only">
-                                <div class="partner-name"><?php the_title(); ?></div>
-                            </div>
-						<?php endif; ?>
+						<div class="partner-card-item">
+							<div class="partner-logo-box">
+								<?php if ( $logo_url ) : ?>
+									<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="partner-logo-img" />
+								<?php else : ?>
+									<div class="partner-text-logo">
+										<?php the_title(); ?>
+									</div>
+								<?php endif; ?>
+							</div>
+							<div class="partner-name"><?php the_title(); ?></div>
+						</div>
 					<?php endwhile; ?>
 
 					<?php
@@ -80,18 +80,18 @@ $default_partners = array(
 						$partners_query->the_post();
 						$logo_url = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'full' ) : '';
 						?>
-						<?php if ( $logo_url ) : ?>
-                            <div class="partner-card-item" aria-hidden="true">
-                                <div class="partner-logo-box">
-                                    <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="partner-logo-img" />
-                                </div>
-                                <div class="partner-name"><?php the_title(); ?></div>
-                            </div>
-						<?php else : ?>
-                            <div class="partner-card-item partner-text-only" aria-hidden="true">
-                                <div class="partner-name"><?php the_title(); ?></div>
-                            </div>
-						<?php endif; ?>
+						<div class="partner-card-item" aria-hidden="true">
+							<div class="partner-logo-box">
+								<?php if ( $logo_url ) : ?>
+									<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="partner-logo-img" />
+								<?php else : ?>
+									<div class="partner-text-logo">
+										<?php the_title(); ?>
+									</div>
+								<?php endif; ?>
+							</div>
+							<div class="partner-name"><?php the_title(); ?></div>
+						</div>
 					<?php endwhile; ?>
 					<?php wp_reset_postdata(); ?>
 				<?php else : ?>

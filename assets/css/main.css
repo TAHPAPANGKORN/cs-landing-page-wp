@@ -2338,6 +2338,21 @@ img.wp-smiley,
   font-size: 2.5rem;
 }
 
+.partner-text-logo {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-primary-dark);
+  text-align: center;
+  line-height: 1.35;
+  padding: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .partner-name {
   margin-top: 0.85rem;
   font-size: 0.85rem;
