@@ -3749,6 +3749,12 @@ img.wp-smiley,
 }
 
 /* 3. Hero Section Stacked Buttons & Spacing */
+@media (max-width: 768px) {
+  .hero-tags {
+    display: none !important;
+  }
+}
+
 @media (max-width: 576px) {
   .hero-actions {
     flex-direction: column;
@@ -3759,16 +3765,6 @@ img.wp-smiley,
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
-  }
-
-  .hero-tags {
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .tag-pill {
-    font-size: 0.78rem;
-    padding: 0.35rem 0.75rem;
   }
 }
 
