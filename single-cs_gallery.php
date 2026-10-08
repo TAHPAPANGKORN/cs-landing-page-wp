@@ -26,7 +26,7 @@ get_header();
 				<nav class="post-breadcrumbs" aria-label="Breadcrumb">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">หน้าแรก</a>
 					<span class="sep">&gt;</span>
-					<a href="<?php echo esc_url( home_url( '/#gallery' ) ); ?>">ภาพกิจกรรม</a>
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'cs_gallery' ) ?: home_url( '/?post_type=cs_gallery' ) ); ?>">ภาพกิจกรรม</a>
 					<?php if ( ! empty( $term_name ) ) : ?>
 						<span class="sep">&gt;</span>
 						<span class="current"><?php echo esc_html( $term_name ); ?></span>

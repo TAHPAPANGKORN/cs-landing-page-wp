@@ -19,27 +19,27 @@ $partners_query = new WP_Query(
 $default_partners = array(
 	array(
 		'name' => 'บริษัท มายออเดอร์ อินเทลลิเจนซ์ จำกัด',
-		'logo' => 'data:image/svg+xml;utf8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="60" x="70" y="10" rx="10" fill="#111"/><path d="M85 30h30v20H85z" fill="#FFF"/><text x="100" y="85" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">MY ORDER</text></svg>' ),
+		'logo' => 'data:image/svg+xml;charset=utf-8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="60" x="70" y="10" rx="10" fill="#111"/><path d="M85 30h30v20H85z" fill="#FFF"/><text x="100" y="85" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">MY ORDER</text></svg>' ),
 	),
 	array(
 		'name' => 'บริษัท ปตท. จำกัด (มหาชน) ศูนย์ปฏิบัติการชลบุรี',
-		'logo' => 'data:image/svg+xml;utf8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="50" r="22" fill="#E11D48"/><text x="120" y="58" font-family="sans-serif" font-size="28" font-weight="bold" font-style="italic" fill="#003366">ptt</text></svg>' ),
+		'logo' => 'data:image/svg+xml;charset=utf-8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="50" r="22" fill="#E11D48"/><text x="120" y="58" font-family="sans-serif" font-size="28" font-weight="bold" font-style="italic" fill="#003366">ptt</text></svg>' ),
 	),
 	array(
 		'name' => 'บริษัท สยาม เด็นโซ่ แมนูแฟคเจอริ่ง จำกัด',
-		'logo' => 'data:image/svg+xml;utf8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><text x="100" y="52" font-family="sans-serif" font-size="26" font-weight="bold" font-style="italic" text-anchor="middle" fill="#B91C1C">DENSO</text><text x="100" y="70" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#666">Crafting the Core</text></svg>' ),
+		'logo' => 'data:image/svg+xml;charset=utf-8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><text x="100" y="52" font-family="sans-serif" font-size="26" font-weight="bold" font-style="italic" text-anchor="middle" fill="#B91C1C">DENSO</text><text x="100" y="70" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#666">Crafting the Core</text></svg>' ),
 	),
 	array(
 		'name' => 'สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.)',
-		'logo' => 'data:image/svg+xml;utf8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><text x="100" y="48" font-family="sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#15803D">สสส</text><text x="100" y="68" font-family="sans-serif" font-size="8" text-anchor="middle" fill="#666">การสร้างเสริมสุขภาพ</text></svg>' ),
+		'logo' => 'data:image/svg+xml;charset=utf-8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><text x="100" y="48" font-family="sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#15803D">สสส</text><text x="100" y="68" font-family="sans-serif" font-size="8" text-anchor="middle" fill="#666">การสร้างเสริมสุขภาพ</text></svg>' ),
 	),
 	array(
 		'name' => 'เทศบาลเมืองแสนสุข จังหวัดชลบุรี',
-		'logo' => 'data:image/svg+xml;utf8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="45" r="25" fill="none" stroke="#0284C7" stroke-width="4"/><path d="M100 25L100 65M80 45L120 45" stroke="#0284C7" stroke-width="3"/><text x="100" y="82" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#333">เมืองแสนสุข</text></svg>' ),
+		'logo' => 'data:image/svg+xml;charset=utf-8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="45" r="25" fill="none" stroke="#0284C7" stroke-width="4"/><path d="M100 25L100 65M80 45L120 45" stroke="#0284C7" stroke-width="3"/><text x="100" y="82" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#333">เมืองแสนสุข</text></svg>' ),
 	),
 	array(
 		'name' => 'บริษัท มัลติเวิร์ส เอ็กซ์เปิร์ท จำกัด',
-		'logo' => 'data:image/svg+xml;utf8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><rect x="70" y="20" width="60" height="60" fill="#000"/><path d="M85 50l15-15 15 15-15 15z" fill="#FFF"/></svg>' ),
+		'logo' => 'data:image/svg+xml;charset=utf-8,' . rawurlencode( '<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg"><rect x="70" y="20" width="60" height="60" fill="#000"/><path d="M85 50l15-15 15 15-15 15z" fill="#FFF"/></svg>' ),
 	),
 );
 ?>

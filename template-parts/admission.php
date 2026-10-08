@@ -187,24 +187,21 @@ $tcas_rounds = array(
 						</div>
 					</div>
 
+					<!-- Qualifications Grid for Selected Round -->
+					<div class="tcas-qualifications-card">
+						<h3 class="qualifications-title">คุณสมบัติที่ควรมี</h3>
+						<div class="qualifications-pills-grid">
+							<?php foreach ( $round['qualifications'] as $qual ) : ?>
+								<div class="qual-pill-item">
+									<span class="qual-pill-icon gold-dot">&#9679;</span>
+									<span class="qual-pill-text"><?php echo esc_html( $qual['text'] ); ?></span>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+
 				</div>
 			<?php endforeach; ?>
-		</div>
-
-		<!-- Bottom Card: Qualifications Grid -->
-		<div class="tcas-qualifications-card">
-			<h3 class="qualifications-title">คุณสมบัติที่ควรมี</h3>
-			<div class="qualifications-pills-grid">
-				<?php 
-				$active_round = reset( $tcas_rounds );
-				foreach ( $active_round['qualifications'] as $qual ) : 
-				?>
-					<div class="qual-pill-item">
-						<span class="qual-pill-icon gold-dot">&#9679;</span>
-						<span class="qual-pill-text"><?php echo esc_html( $qual['text'] ); ?></span>
-					</div>
-				<?php endforeach; ?>
-			</div>
 		</div>
 
 	</div>

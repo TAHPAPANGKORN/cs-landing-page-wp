@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 galleryItems.forEach(item => {
                     const category = item.getAttribute('data-category');
                     if (filter === 'all' || category === filter) {
-                        item.style.display = 'block';
+                        item.style.display = '';
                     } else {
                         item.style.display = 'none';
                     }
